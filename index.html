@@ -1,1 +1,120 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ImGone's Journey</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="icon" href="http://www.imgone98.com/favicon.ico" type="image/x-icon"> 
+</head>
+<body>
+  <label id="hi"> </label>
+  <br>
+
+  <label> Control Over Citizens: </label>
+  <span id="control">0%</span>
+
+<br>
+
+  <label> Resources Availible: </label>
+  <span id="resources">100%</span>
+
+<br>
+  
+  <label> Newspeak Progression: </label>
+  <br>
+  <input id="citizen-newspeak" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'newspeak', this.id)"/>
+  <span id="newspeak">0</span>
+
+<br>
+
+  <label> Fear: </label>
+  <br>
+  <input id="citizen-fear" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'fear', this.id)"/>
+  <span id="fear">0</span>
+
+<br>
+
+  <label> Unity: </label>
+  <br>
+  <input id="citizen-unity" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'unity', this.id)"/>
+  <span id="unity">0</span>
+
+<br>
+
+  <label> Education: </label>
+  <br>
+  <input id="citizen-education" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'education', this.id)"/>
+  <span id="education">0</span>
+
+<br>
+  
+  <label> Needs: </label>
+  <br>
+  <input id="citizen-needs" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'needs', this.id)"/>
+  <span id="needs">0</span>
+
+<br>
+
+  <label> Change the Past: </label>
+  <br>
+  <input id="citizen-past" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'past', this.id)"/>
+  <span id="past">0</span>
+
+<br>
+
+  <label> Monitoring: </label>
+  <br>
+  <input id="citizen-monitor" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'monitor', this.id)"/>
+  <span id="monitor">0</span>
+
+
+  <script type="text/javascript">
+    var maxValue = 0;
+
+    var time = 0;
+    setInterval(myTimer, 1000);
+
+    function showValue(newValue, range, citizen)
+    {
+      //if newValue >= maxValue
+      if(newValue >= maxValue) {
+        newValue = maxValue;
+      }
+      document.getElementById(range).innerHTML=newValue;
+	  document.getElementById(citizen).setAttribute("value", newValue);
+	  
+	 
+    }
+
+    function myTimer() {
+      //Sets values for each slider
+      var values = [document.getElementById("newspeak"), document.getElementById("fear"),
+       document.getElementById("unity"), document.getElementById("education"), document.getElementById("needs"), document.getElementById("past"), document.getElementById("monitor")];
+      
+      var totalValue = 0;
+      for (i = 0; i < values.length; i++) { 
+          totalValue += parseInt(values[i].innerHTML);
+          maxValue = 100 - totalValue;
+      }
+
+      document.getElementById("resources").innerHTML = totalValue + "%";
+
+      var ranges = ["newspeak", "fear", "unity", "education", "needs", "past", "monitor"];
+
+      //Grab citizen-control and change attribute based on maxValue
+
+      //Controls Time
+      time++;
+      document.getElementById("time").innerHTML = time + "s";
+    }
+
+    function refreshSliders(values) {
+      
+    }
+  </script>
+<br>
+  <label> Time Passed: </label>
+  <span id="time"> 0s</span>
+
+		
+</body>
+</html>
