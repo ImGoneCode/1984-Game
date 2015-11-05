@@ -12,65 +12,76 @@
 
   <label> Control Over Citizens: </label>
   <span id="control">0%</span>
+  
+ 
+  
 
 <br>
 
   <label> Resource Usage: </label>
-  <span id="resources">100%</span>
+  <span id="resources">50%</span>
 
+	
 <br>
   
   <label> Newspeak Progression: </label>
   <br>
-  <input id="citizen-newspeak" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'newspeak', this.id)"/>
+  <input id="citizen-newspeak" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'newspeak', this.id, 0)"/>
   <span id="newspeak">0</span>
 
 <br>
 
   <label> Fear: </label>
   <br>
-  <input id="citizen-fear" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'fear', this.id)"/>
+  <input id="citizen-fear" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'fear', this.id, 1)"/>
   <span id="fear">0</span>
 
+   <label style="position:absolute; left: 350px;"> Current Events </label>
 <br>
 
   <label> Unity: </label>
   <br>
-  <input id="citizen-unity" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'unity', this.id)"/>
+  <input id="citizen-unity" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'unity', this.id, 2)"/>
   <span id="unity">0</span>
 
+  <span id="events" style="position:absolute; left: 350px"> Current Events </span>
 <br>
 
   <label> Education: </label>
   <br>
-  <input id="citizen-education" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'education', this.id)"/>
+  <input id="citizen-education" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'education', this.id, 3)"/>
   <span id="education">0</span>
 
 <br>
   
   <label> Needs: </label>
   <br>
-  <input id="citizen-needs" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'needs', this.id)"/>
+  <input id="citizen-needs" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'needs', this.id, 4)"/>
   <span id="needs">0</span>
 
 <br>
 
   <label> Change the Past: </label>
   <br>
-  <input id="citizen-past" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'past', this.id)"/>
+  <input id="citizen-past" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'past', this.id, 5)"/>
   <span id="past">0</span>
 
 <br>
 
   <label> Monitoring: </label>
   <br>
-  <input id="citizen-monitor" type="range"  min="0" max="100" value="0" onchange="showValue(this.value, 'monitor', this.id)"/>
+  <input id="citizen-monitor" type="range"  min="0" max="50" value="0" onchange="showValue(this.value, 'monitor', this.id, 6)"/>
   <span id="monitor">0</span>
 
 <br>
   <label> Time Passed: </label>
   <span id="time"> 0s</span>
 
+<br>
+
+<label> Debug: </label>
+  <br>
+  <span id="debug">0</span> 
 		
 </body>
 </html>
