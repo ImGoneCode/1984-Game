@@ -1,16 +1,26 @@
+/* TODO
+ * More events
+ * Better explanations
+*/ 
+
 var oldValues = []; //Used to test if oldValue of each slider was inRange
 var totalValue = 0; //Total of all values after last run
 var maxValue = 0;  //Value of current total amount - what it should be
 var resources = 100; //Value of resources availible
 var control = 0; //Value of control over citizens
+var population = 10000; //Theoretical amunt of people based on how many have turned into Big Brother
 
 var time = 0;
 setInterval(myTimer, 1000); // Counts time
 
+var placeholder = 1;
 var controlDecayPercent = 1;
+
 //Placeholder values ranges for possible values of events & description  of events.
 var ranges;
 var description;
+
+var lastEvent = [];
 
 window.onload = function () {
   setNextEvent(); //Sets new event, should refresh description and add to previousControl
@@ -20,20 +30,29 @@ window.onload = function () {
 function showValue(changedValue, rangeLabel, citizen, sliderID)
 {
   var values = [document.getElementById("newspeak"), document.getElementById("fear"), 
-   document.getElementById("unity"), document.getElementById("education"), 
-   document.getElementById("needs"), document.getElementById("past"), document.getElementById("monitor")];
+    document.getElementById("unity"), document.getElementById("education"), 
+    document.getElementById("needs"), document.getElementById("past"), document.getElementById("monitor")];
 
-  //Defines values of before changing sliders
-  oldValues = [];
-  for (i = 0; i < values.length; i++) { 
-    oldValues.push(values[i].innerHTML);
-  } 
+  var numberValues = [];
+  for(x = 0; x < values.length; x++) {
+    numberValues.push(values[x].innerHTML);
+  }
 
-  //Change value of slider
-  document.getElementById(rangeLabel).innerHTML= changedValue;
-  document.getElementById(citizen).setAttribute("value", changedValue);
-
-  
+  for(x = 0; x < numberValues.length; x++) {
+    if(numberValues[x] == "doesn't matter") {
+      numberValues[x] = 0;
+    } else if(numberValues[x] == "poor") {
+      numberValues[x] = 1;
+    } else if(numberValues[x] == "low") {
+      numberValues[x] = 2;
+    } else if(numberValues[x] == "medium") {
+      numberValues[x] = 3;
+    } else if(numberValues[x] == "high") {
+      numberValues[x] = 4;
+    } else if(numberValues[x] == "very high") {
+      numberValues[x] = 5;
+    }
+  }
 
   //Calculate total values of all sliders(counts changedValue)
   totalValue = 0;
@@ -51,26 +70,50 @@ function showValue(changedValue, rangeLabel, citizen, sliderID)
     document.getElementById(citizen).setAttribute("value", changedValue);
 
     document.getElementById(citizen).stepDown(maxValue);
-    totalValue -= maxValue ;
+    totalValue -= maxValue;
   }
-  document.getElementById("resources").innerHTML = totalValue + "%";
+ 
+  //Change value of slider
+  if(changedValue == 0) {
+    document.getElementById(rangeLabel).innerHTML = "doesn't matter";
+  } else if(changedValue == 1) {
+    document.getElementById(rangeLabel).innerHTML= "poor";
+  } else if(changedValue == 2) {
+    document.getElementById(rangeLabel).innerHTML= "low";
+  } else if(changedValue == 3) {
+    document.getElementById(rangeLabel).innerHTML= "medium";
+  } else if(changedValue == 4) {
+    document.getElementById(rangeLabel).innerHTML= "high";
+  } else if(changedValue == 5) {
+    document.getElementById(rangeLabel).innerHTML= "very high";
+  }
+  
+  calculateControl(ranges[sliderID], changedValue, numberValues[sliderID]);
 
-  calculateControl(ranges[sliderID], document.getElementById(rangeLabel).innerHTML, oldValues[sliderID]);
-  //ocument.getElementById("hi").innerHTML = oldValues;
   if(isAllInRange(ranges, values)) { //possible Values, value of each slider
-    //document.getElementById("hi").innerHTML = "In range";
     setNextEvent();
 	  myTimer();
-    controlDecayPercent *= .90;
+
+    placeholder +=1; // Close enough
+    controlDecayPercent = (100 * Math.exp(-placeholder / 10)) / 50;
+    if(control <= 7) {
+    } else {
+      population -= population/control*1.1; 
+    }
+
+
+    document.getElementById("hi").innerHTML = controlDecayPercent;
   } else {
-  //  document.getElementById("hi").innerHTML = "Out of range";
     
   } 
+
+  
   document.getElementById("control").innerHTML = control;
+  document.getElementById("pop").innerHTML = population;
 }
 
 function calculateControl(range, actualValue, oldValue) {
-  document.getElementById("hi").innerHTML = range + " : " + actualValue + " : " + oldValue;
+  //document.getElementById("hi").innerHTML = (range + " : " + actualValue + " : " + oldValue);
   if(inRange(range, actualValue) && !inRange(range, oldValue)) { //If before value wasn't already in range
     control += controlDecayPercent; //only needs to check current value
     document.getElementById("debug").innerHTML = "Before not inRange but is now";
@@ -84,17 +127,6 @@ function calculateControl(range, actualValue, oldValue) {
     document.getElementById("debug").innerHTML = "Both";
   }
   //document.getElementById("debug").innerHTML = control + " : " + controlDecayPercent;
-}
-
-
-function getRanges(values) {
-  var numbers = [];
-  //returns array that holds each value's number ranges
-  for(x = 0; x < values.length; x++) {
-    var tuple = values[x];
-    numbers.push(this.range(tuple));
-  }
-  return numbers;
 }
 
 function range(values) { 
@@ -116,61 +148,69 @@ function myTimer() {
 }
 
 function isAllInRange(ranges, actualValues) { //ranges is an array in which each array inside array is the list of values it can be
-  var acquired = []; //acquired when
-	
-  var sliderValues = [];
-  var possibleValues = [];
-  var values = [];
-
-  
+  //Needs all of numberValues && all currentValues
+  var acquired = [];
+  var currentValues = [];
   for(x = 0; x < actualValues.length; x++) {
-    sliderValues.push(actualValues[x].innerHTML);
-	
-    possibleValues.push(ranges[x]);
-	 
     
+    if(actualValues[x].innerHTML == "doesn't matter") {
+      currentValues.push(0);
+    } else if(actualValues[x].innerHTML == "poor") {
+      currentValues.push(1);
+    } else if(actualValues[x].innerHTML == "low") {
+      currentValues.push(2);
+    } else if(actualValues[x].innerHTML == "medium") {
+      currentValues.push(3);
+    } else  if(actualValues[x].innerHTML == "high") {
+      currentValues.push(4);
+    } else if(actualValues[x].innerHTML == "very high") {
+      currentValues.push(5);
+    } else {
+      currentValues.push(0);
+    }
   }
-  var things = [];
+
   var z = 0; 
-  while(z < sliderValues.length) {
-    if(inRange(possibleValues[z], sliderValues[z])) {
-			acquired.push(true);
-		} else {
-			acquired.push(false);
-		} 
-		
-		things.push(z);
-		z++;
+  while(z < currentValues.length) {
+    if(inRange(currentValues[z], ranges[z])) {
+      acquired.push(true);
+    } else {
+      acquired.push(false);
+    } 
+    z++;
   }
     for(x = 0; x < acquired.length; x++) { 
       if(!acquired[x]) { //if any values not in range, return false
         return false;
       }
     }
-    return true;
+    return true; 
 }
 
 function inRange(array, value) { //array, value
-	
-	for(x = 0; x < array.length; x++) {
-		var zero = array[x];
-		if(array[x] == value) {
-				x = array.length;
-				
-				return true;
-		}
-	}
+	if(array == value) { 
+    return true;
+  }
 	return false;
 }
 
 function setNextEvent() {
   var events = [ //Should include information about each event
-  [getRanges([[1, 10], [1, 10], [10, 20], [10, 20],[1, 10], [10, 20], [10, 20]]), "Bombings are increasing, enemies are winning!"],
-  [getRanges([[10, 20], [10, 20], [1, 10], [1, 10], [10, 20], [1, 10], [1, 10]]), "Three-Minutes Hate is soon! Be there!"],
+  [[0, 5, 4, 2, 1, 0, 3], "Bombings are increasing, enemies are winning!"],
+  [[2, 5, 4, 2, 1, 2, 0], "Three-Minutes Hate is soon! Be there!"],
+  [[0, 3, 3, 5, 1, 2, 5], "Big Brother is watching you! (Propoganda)"],
+  [[2, 5, 2, 0, 1, 2, 5], "Telescreens are becoming more popular. Grab yours today!"],
+  [[3, 2, 2, 2, 4, 3, 5], "Rations have gone up!"],
   ];
 
-  
-  var random = Math.floor((Math.random() * 2)); // Random number
+  for(x = 0; x < events.length; x++) {
+    if(lastEvent[1] == events[x][1]) {
+      events.splice(x, 1);
+      random = 0;
+    }
+  }
+
+  var random = Math.floor((Math.random() * events.length)); // Random number
   
   //Takes out random element from events, 0 = ranges, 1 = description
   for(x = 0; x < events.length; x++) {
@@ -179,5 +219,6 @@ function setNextEvent() {
       description = events[x][1];
     }
   }
+  lastEvent = [ranges, description];
   document.getElementById("events").innerHTML = description; //Refreshs description
 }
