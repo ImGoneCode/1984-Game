@@ -1,7 +1,4 @@
-#citizen-control {
-	position: absolute;
-	left: 120px;
-}
+
 
 label {
 
@@ -20,4 +17,25 @@ body {
 	color: #000;
 	background-color: #3B3131;
 	width: 100%;
+}
+h5 {
+	font-size: 18px;
+}
+
+a {
+	font-size: 18px;
+	text-decoration: none;
+	color: black;
+}
+
+#game-description {
+	font-size: 16px;
+}
+
+#control-description {
+	margin-left: 150px;
+}
+
+#population-description {
+	margin-left: 150px;
 }

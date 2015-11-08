@@ -100,14 +100,9 @@ function showValue(changedValue, rangeLabel, citizen, sliderID)
     } else {
       population -= population/control*1.1; 
     }
-
-
-    document.getElementById("hi").innerHTML = controlDecayPercent;
   } else {
     
   } 
-
-  
   document.getElementById("control").innerHTML = control;
   document.getElementById("pop").innerHTML = population;
 }
@@ -116,17 +111,12 @@ function calculateControl(range, actualValue, oldValue) {
   //document.getElementById("hi").innerHTML = (range + " : " + actualValue + " : " + oldValue);
   if(inRange(range, actualValue) && !inRange(range, oldValue)) { //If before value wasn't already in range
     control += controlDecayPercent; //only needs to check current value
-    document.getElementById("debug").innerHTML = "Before not inRange but is now";
   } else if(inRange(range, oldValue) && !inRange(range, actualValue)) {//else if already in range and not in range any more, 
     control -= controlDecayPercent;
-    document.getElementById("debug").innerHTML = "Already && not anymore"; 
   } else if(!inRange(range, oldValue) && !inRange(range, actualValue)) { //neither
-    document.getElementById("debug").innerHTML = "Neither";
 
   }else { //already in range and still in range
-    document.getElementById("debug").innerHTML = "Both";
   }
-  //document.getElementById("debug").innerHTML = control + " : " + controlDecayPercent;
 }
 
 function range(values) { 

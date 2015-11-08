@@ -7,88 +7,93 @@
 	<link rel="icon" href="http://www.imgone98.com/favicon.ico" type="image/x-icon"> 
 </head>
 <body>
-  <label id="hi"> </label>
-<br>
-  <span> Value </span>
-<br>
 
-  <label> Control Over Citizens: </label>
-  <span id="control">0%</span>
-  
- 
-  
-
-<br>
-
-  <label> Population: </label>
-  <span id="pop"> 10000</span>
-
-<br>
-
-  <label> Resource Usage: </label>
-  <span id="resources">50%</span>
-
-	
-<br>
-  
-  <label> Newspeak Progression: </label>
+<div id="game"> 
   <br>
-  <input id="citizen-newspeak" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'newspeak', this.id, 0)"/>
-  <span id="newspeak">0</span>
 
-<br>
+    <label> Control Over Citizens: </label>
+    <span id="control">0%</span>
+    <span id="control-description">Control of the people is how much power you have. </span>
+    
+   
+    
 
-  <label> Fear: </label>
   <br>
-  <input id="citizen-fear" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'fear', this.id, 1)"/>
-  <span id="fear">0</span>
 
-   <label style="position:absolute; left: 350px;"> Current Events </label>
-<br>
-
-  <label> Unity: </label>
+    <label> Population: </label>
+    <span id="pop"> 10000</span>
+    <span id="population-description">Population refers to the amount of citizens their are.</span>
+  	
   <br>
-  <input id="citizen-unity" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'unity', this.id, 2)"/>
-  <span id="unity">0</span>
+    
+    <label> Newspeak Progression: </label>
+    <br>
+    <input id="citizen-newspeak" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'newspeak', this.id, 0)"/>
+    <span id="newspeak">0</span>
 
-  <span id="events" style="position:absolute; left: 350px"> Current Events </span>
-<br>
-
-  <label> Education: </label>
   <br>
-  <input id="citizen-education" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'education', this.id, 3)"/>
-  <span id="education">0</span>
 
-<br>
-  
-  <label> Needs: </label>
+    <label> Fear: </label>
+    <br>
+    <input id="citizen-fear" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'fear', this.id, 1)"/>
+    <span id="fear">0</span>
+
+     <label style="position:absolute; left: 350px;"> Current Events </label>
   <br>
-  <input id="citizen-needs" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'needs', this.id, 4)"/>
-  <span id="needs">0</span>
 
-<br>
+    <label> Unity: </label>
+    <br>
+    <input id="citizen-unity" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'unity', this.id, 2)"/>
+    <span id="unity">0</span>
 
-  <label> Change the Past: </label>
+    <span id="events" style="position:absolute; left: 350px"> Current Events </span>
   <br>
-  <input id="citizen-past" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'past', this.id, 5)"/>
-  <span id="past">0</span>
 
-<br>
+    <label> Education: </label>
+    <br>
+    <input id="citizen-education" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'education', this.id, 3)"/>
+    <span id="education">0</span>
 
-  <label> Monitoring: </label>
   <br>
-  <input id="citizen-monitor" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'monitor', this.id, 6)"/>
-  <span id="monitor">0</span>
+    
+    <label> Needs: </label>
+    <br>
+    <input id="citizen-needs" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'needs', this.id, 4)"/>
+    <span id="needs">0</span>
 
-<br>
-  <label> Time Passed: </label>
-  <span id="time"> 0s</span>
-
-<br>
-
-<label> Debug: </label>
   <br>
-  <span id="debug">0</span> 
-		
+
+    <label> Change the Past: </label>
+    <br>
+    <input id="citizen-past" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'past', this.id, 5)"/>
+    <span id="past">0</span>
+
+  <br>
+
+    <label> Monitoring: </label>
+    <br>
+    <input id="citizen-monitor" type="range"  min="0" max="5" value="0" onchange="showValue(this.value, 'monitor', this.id, 6)"/>
+    <span id="monitor">0</span>
+
+  <br>
+    <label> Time Passed: </label>
+    <span id="time"> 0s</span>
+
+  <br>
+</div>
+
+<div id="game-description"> 
+  <h1> 1984 Game Project </h1>
+  <h5> *Background* </h5>
+  <p> 1984 is a dystopian novel in a world where the Oceania is ocupied by the Party and the proles. The proles being the low-class and are basically ignored. The outer party are the ones who are the working class, and the inner party maintaining the hierarcheal structure and trying to get as much power over the people as possible.</p>
+  <h5> Description</h5>
+
+  <p>You, the inner party, control the people. The goal of this game is to try and gain as much power over the people as possible. You control the following variables to try and gain this power. 
+  </p> <ul><li>Newspeak Progression: Newspeak is a dummed down language that is very simple and not capable of producing feelings and complicated feelings. <br> Change this to affect how much more stupid the people are becoming.</li> <li>Fear: Change this to make people to scared to rise up against you or to act out of the ordinary and perform crime.</li><li>Unity: A major goal of the inner party is to make people think you are at war and give people a common enemy uniting them against one person. Unity among the people also allows them to think in the same way that others would. With enough influence everyone would one day become almost just like Big Brother. This is partly why population decreases, everyone is turning into Big Brother.</li><li>Education: Change this in order to make younger people search for bad guys and make them think that big brother is their all mighty god.</li><li>Needs: Change this to increase/decrease rations/basic survival needs in order to make people too tired to rebel.</li><li>Change the Past: Whoever controls the present controls the past, whoever controls the past controls the future.</li><li>Monitoring: Make sure no one is doing something wrong by watching people more closely.</li> </ul> 
+  <p> The outer party serves two purposes to you, making the changes to these variables, and also giving you events that they believe will help you gain more control over them. They suggest events and you must know what variables you have to change in order for the outer party to ignite these events. Good luck out there!</p>
+
+  <a href= "Event_Explanations">Explanations for what variables you change in order to ignite the events (link)</a>
+</div>
+
 </body>
 </html>
