@@ -186,11 +186,15 @@ function inRange(array, value) { //array, value
 
 function setNextEvent() {
   var events = [ //Should include information about each event
-  [[0, 5, 4, 2, 1, 0, 3], "Bombings are increasing, enemies are winning!"],
-  [[2, 5, 4, 2, 1, 2, 0], "Three-Minutes Hate is soon! Be there!"],
-  [[0, 3, 3, 5, 1, 2, 5], "Big Brother is watching you! (Propoganda)"],
-  [[2, 5, 2, 0, 1, 2, 5], "Telescreens are becoming more popular. Grab yours today!"],
-  [[3, 2, 2, 2, 4, 3, 5], "Rations have gone up!"],
+  //newspeak fear, unity, education, needs, past, monitor
+  [[2, 5, 4, 2, 1, 1, 3], "Bombings are increasing, enemies are winning!"],
+  [[2, 5, 4, 3, 2, 3, 3], "Three-Minutes Hate is soon! Be there!"],
+  [[2, 4, 2, 4, 1, 2, 4], "Big Brother is watching you! (Propoganda)"],
+  [[2, 5, 2, 2, 1, 2, 5], "Telescreens are becoming more popular. Grab yours today!"],
+  [[4, 1, 3, 2, 5, 3, 5], "Rations have gone up!"],
+  [[1, 1, 4, 4, 3, 5, 2], "Oceana has switched allies and enemies."],
+  [[2, 4, 1, 5, 2, 2, 1], "Children are the answer to our spy problem! Make sure to feed them well!"],
+  [[2, 2, 4, 1, 1, 3, 4], "Buildings are falling apart, elevators aren't working, and water doesn't reach the top of the apartments."]
   ];
 
   for(x = 0; x < events.length; x++) {
