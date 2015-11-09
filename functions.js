@@ -39,9 +39,7 @@ function showValue(changedValue, rangeLabel, citizen, sliderID)
   }
 
   for(x = 0; x < numberValues.length; x++) {
-    if(numberValues[x] == "doesn't matter") {
-      numberValues[x] = 0;
-    } else if(numberValues[x] == "poor") {
+    if(numberValues[x] == "very low") {
       numberValues[x] = 1;
     } else if(numberValues[x] == "low") {
       numberValues[x] = 2;
@@ -74,10 +72,8 @@ function showValue(changedValue, rangeLabel, citizen, sliderID)
   }
  
   //Change value of slider
-  if(changedValue == 0) {
-    document.getElementById(rangeLabel).innerHTML = "doesn't matter";
-  } else if(changedValue == 1) {
-    document.getElementById(rangeLabel).innerHTML= "poor";
+  if(changedValue == 1) {
+    document.getElementById(rangeLabel).innerHTML= "very low";
   } else if(changedValue == 2) {
     document.getElementById(rangeLabel).innerHTML= "low";
   } else if(changedValue == 3) {
@@ -98,12 +94,12 @@ function showValue(changedValue, rangeLabel, citizen, sliderID)
     controlDecayPercent = (100 * Math.exp(-placeholder / 10)) / 50;
     if(control <= 7) {
     } else {
-      population -= population/control*1.1; 
+    //  population -= population/control*1.1; 
     }
   } else {
     
   } 
-  document.getElementById("control").innerHTML = control;
+  document.getElementById("control").innerHTML = control + "%";
   document.getElementById("pop").innerHTML = population;
 }
 
@@ -111,6 +107,7 @@ function calculateControl(range, actualValue, oldValue) {
   //document.getElementById("hi").innerHTML = (range + " : " + actualValue + " : " + oldValue);
   if(inRange(range, actualValue) && !inRange(range, oldValue)) { //If before value wasn't already in range
     control += controlDecayPercent; //only needs to check current value
+    population = 10000 * Math.exp(-control / 15);
   } else if(inRange(range, oldValue) && !inRange(range, actualValue)) {//else if already in range and not in range any more, 
     control -= controlDecayPercent;
   } else if(!inRange(range, oldValue) && !inRange(range, actualValue)) { //neither
@@ -143,9 +140,7 @@ function isAllInRange(ranges, actualValues) { //ranges is an array in which each
   var currentValues = [];
   for(x = 0; x < actualValues.length; x++) {
     
-    if(actualValues[x].innerHTML == "doesn't matter") {
-      currentValues.push(0);
-    } else if(actualValues[x].innerHTML == "poor") {
+    if(actualValues[x].innerHTML == "very low") {
       currentValues.push(1);
     } else if(actualValues[x].innerHTML == "low") {
       currentValues.push(2);
@@ -194,7 +189,7 @@ function setNextEvent() {
   [[4, 1, 3, 2, 5, 3, 5], "Rations have gone up!"],
   [[1, 1, 4, 4, 3, 5, 2], "Oceana has switched allies and enemies."],
   [[2, 4, 1, 5, 2, 2, 1], "Children are the answer to our spy problem! Make sure to feed them well!"],
-  [[2, 2, 4, 1, 1, 3, 4], "Buildings are falling apart, elevators aren't working, and water doesn't reach the top of the apartments."]
+  [[2, 2, 4, 1, 3, 3, 4], "Buildings are falling apart, elevators aren't working, <br> and water doesn't reach the top of the apartments."]
   ];
 
   for(x = 0; x < events.length; x++) {

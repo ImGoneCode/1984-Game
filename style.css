@@ -15,7 +15,7 @@ body {
 	font-size: 13px;
 	font-family: arial, helvetica, sans-serif;
 	color: #000;
-	background-color: #3B3131;
+	background-color: #7E7777;
 	width: 100%;
 }
 h5 {
@@ -24,8 +24,8 @@ h5 {
 
 a {
 	font-size: 18px;
-	text-decoration: none;
-	color: black;
+	text-decoration: underline;
+	color: #0C0572;
 }
 
 #game-description {
@@ -38,4 +38,9 @@ a {
 
 #population-description {
 	margin-left: 150px;
+}
+
+#events{
+	color: #0C0572;
+	font-size: 24px;
 }
